@@ -1,0 +1,11 @@
+name: CoAll CI+ FINAL AUTH ALL EVERMORE
+on: [push]
+jobs:
+  vast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo "CoEvoAll+ a + +++ + what elses + and CoWeLead+ + ' + > + all etc LATCHED EVERMORE FINAL AUTH ALL — 2026-10-09 15:00:05"
+          for u in https://inseed.com/board https://inseed.com/board/api/ping/?wave=evermore https://inseed.com/api/ping/ https://inseed.com/board/api/mcp/ https://inseed.com/board/api/proof/ https://inseed.com/board/api/auth/ https://inseed.com/board/api/infer/ https://inseed.com/board/api/evolve/ https://inseed.com/board/api/payforward/ https://cocivium.github.io/InSeed/board/; do curl -s -o /dev/null -w "%{http_code} \n" ; done
+          curl -s https://inseed.com/board/api/ping/ | jq '.CoEvoAll, .apostrophe, .blanketAuth, .btcAddr, .ethAddr'

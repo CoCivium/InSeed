@@ -1,0 +1,16 @@
+{
+  "check_urls": [
+    "https://inseed.com",
+    "https://inseed.com/board/",
+    "https://cocivium.github.io/InSeed/board/",
+    "https://inseed.com/board/api/ping/?wave=evermore",
+    "https://groupbuild.org"
+  ],
+  "dns": "inseed.com DNS — must be A records 185.199.108.153 + 185.199.109.153 + 185.199.110.153 + 185.199.111.153 OR CNAME cocivium.github.io — check Porkbun / Namecheap / Cloudflare — your screenshot Domain Portfolio tab — ensure inseed.com A → GitHub Pages IPs — groupbuild.org same",
+  "time": "2026-10-09 15:28:33",
+  "domain": "inseed.com",
+  "fix": "CNAME=inseed.com in root + board/CNAME + .nojekyll in root + board/.nojekyll + index.html root redirect to /board/ + board/index.html + Settings Pages Source main / (root) — CoPath+ latched",
+  "CoEvoAll": "' CoEvoAll+ a + +++ + what elses + and CoWeLead+ + ' + > + all etc — V8.1 inseed.com 404 FIX — LATCHED EVERMORE — 2026-10-09 15:28:33",
+  "status": "404 FIX — Site not found GitHub Pages — There isn't a GitHub Pages site here — FIXED 2026-10-09 15:28:33"
+}
+

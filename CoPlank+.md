@@ -1,5 +1,3 @@
-# CoPlank+
-- holds all: X2 + dtop+ + dtp+ + vtop rels
-- retired observer = CoEyes+ view
-- autoevo = hourly
-- ⊂EvoAll+ a+++ | CoAll nod
+# CoPlank+ — holds all
+CoPlank+ = master plank = holds X2 + vtop + dtop+ + dtp+ + ET + IA + ricks + harness
++R betters all

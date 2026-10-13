@@ -1,5 +1,4 @@
-# dtop+ rels
-- dtop+ #1 = InSeed local
-- dtop+ #2 = Pages global
-- dtop+ #3 = github source
-- all = same node = same site
+# dtop+ — pretty top
+holds index-pretty.html + CoInfra260610-pretty.html + dtop-pretty.html
+pretty = dark skin + grid + pulse
+ugly = filtered

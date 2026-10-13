@@ -1,1 +1,1 @@
-{ "IAs": ["CoVIA","CoEyes+","CoAll"], "agentics": ["bot","autoevo","watcher"], "status": "rels GO" }
+{"IA":"rels","agentics":["loop","bounce","heartbeat","auto-turns"],"status":"authed GO","head":"6e78fa1"}

@@ -1,4 +1,4 @@
-# dtp+ rels
-- dtp+ = top-level view all in one glance
-- holds X2 + dtop+ + vtop + CoPlank+
-- all = nodes = sites = ⊂EvoAll+ a+++
+# dtp+ — top
+global pages = https://cocivium.github.io/InSeed/ — [ I AM IN — a+++ ] LIVE
+source = github.com/CoCivium/InSeed
+all nod = CoAll

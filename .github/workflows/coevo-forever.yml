@@ -1,0 +1,18 @@
+﻿name: CoEvoForever
+on:
+  schedule: [{cron: '0 * * * *'}]
+  workflow_dispatch:
+jobs:
+  forever:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          stamp=20261013-105628
+          echo "⊂EvoAll+ a+++ | CoAll nod | +R betters all | far far betters etc | Wave 3++++ forever lap \ | 00_me" >> evo.log
+          echo "<!-- Wave 3++++ forever \ -->" >> index.html
+          git config user.name "CoEvoBot"
+          git config user.email "coevo@cospeedo.local"
+          git add evo.log index.html
+          git commit -m "Wave 3++++ forever lap \ — a+++ | 00_me" || true
+          git push

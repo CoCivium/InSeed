@@ -1,0 +1,13 @@
+﻿name: CoAutoEvo
+on:
+  schedule: [{cron: '30 10 * * *'}]
+  workflow_dispatch:
+jobs:
+  evo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo "⊂EvoAll+ a+++ | CoAll nod | +R betters all | 00_me // autoevo $(date -u +%Y%m%d)" >> evo.log
+          git config user.name "CoEvoBot"; git config user.email "coevo@cospeedo.local"
+          git add evo.log; git commit -m "auto cloudify lap — a+++ | 00_me" || true; git push

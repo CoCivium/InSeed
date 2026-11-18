@@ -158,5 +158,42 @@ class InSeedFirstUseTests(unittest.TestCase):
                     self.assertNotIn(forbidden, source, forbidden)
 
 
+    def test_tracked_local_scripts_cannot_publish_without_elected_reviewer(self):
+        # Static negative gate. The original source remains in Git history.
+        # Passing cannot prove no external host, credential or tool publishes.
+        scripts = sorted(ROOT.rglob("*.ps1"))
+        self.assertGreaterEqual(len(scripts), 10, "source-script coverage shrank")
+        forbidden = (
+            r"\bgit\s+push\b",
+            r"\bgh\s+pages\s+deploy\b",
+            r"\bgh\s+gist\s+create\b",
+            r"\b(?:add-content|set-content|out-file)\b[^\n]*\bindex\.html\b",
+        )
+        for path in scripts:
+            with self.subTest(source=path.relative_to(ROOT).as_posix()):
+                self.assertFalse(path.is_symlink(), "HOLD_SCRIPT_SYMLINK")
+                text = path.read_text(encoding="utf-8-sig")
+                for expression in forbidden:
+                    self.assertNotRegex(text, expression)
+
+    def test_publication_unsafe_source_patterns_are_not_dead_checks(self):
+        candidates = (
+            "git push origin main",
+            "gh pages deploy . --dotfiles",
+            "gh gist create screenshot.png --public",
+            'Add-Content "$Root\\index.html" "<!-- unaudited -->"',
+        )
+        forbidden = (
+            r"\bgit\s+push\b",
+            r"\bgh\s+pages\s+deploy\b",
+            r"\bgh\s+gist\s+create\b",
+            r"\b(?:add-content|set-content|out-file)\b[^\n]*\bindex\.html\b",
+        )
+        for candidate in candidates:
+            self.assertTrue(any(re.search(expr, candidate, re.IGNORECASE)
+                                for expr in forbidden), candidate)
+
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -109,9 +109,9 @@ class InSeedFirstUseTests(unittest.TestCase):
         t = " ".join(page().text).lower()
         for phrase in ("informational project front door", "not a claim",
                        "commercial service needs its own scope",
-                       "actual licenses", "not independently verified",
-                       "not a completed contract"):
+                       "actual licenses", "not a completed contract"):
             self.assertIn(phrase, t, phrase)
+        self.assertRegex(t, r"not (?:been )?independently verified")
         self.assertIn("COCOMMONS_INSEED_DUAL_LANE_R0_20261115.md", HTML)
         self.assertIn("MasterPlan.md", HTML)
 

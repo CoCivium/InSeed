@@ -137,5 +137,26 @@ class InSeedFirstUseTests(unittest.TestCase):
         self.assertNotIn("https://fonts.", HTML.lower())
 
 
+    def test_legacy_site_mutators_are_quarantined_without_new_scheduler(self):
+        # A reviewed public home must not be silently edited by an old cron.
+        # Enforce the same contract for both incumbent legacy workflows.
+        for workflow in ("coevo-forever.yml", "autoevo.yml"):
+            with self.subTest(workflow=workflow):
+                source = (ROOT / ".github" / "workflows" / workflow).read_text(
+                    encoding="utf-8-sig"
+                )
+                self.assertNotIn("schedule:", source)
+                self.assertNotIn("cron:", source)
+                self.assertIn("workflow_dispatch:", source)
+                self.assertIn("permissions:\n  contents: read", source)
+                self.assertIn("persist-credentials: false", source)
+                self.assertIn("timeout-minutes:", source)
+                for forbidden in (
+                    "git push", "git commit", "git add",
+                    ">> index.html", ">> evo.log", "contents: write",
+                ):
+                    self.assertNotIn(forbidden, source, forbidden)
+
+
 if __name__ == "__main__":
     unittest.main()

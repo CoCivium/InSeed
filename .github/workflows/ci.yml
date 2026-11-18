@@ -1,11 +1,20 @@
-name: CoAll CI+ FINAL AUTH ALL EVERMORE
-on: [push]
+name: InSeed source identity only (no live-service claim)
+on: [push, workflow_dispatch]
+
+permissions:
+  contents: read
+
 jobs:
   vast:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          echo "CoEvoAll+ a + +++ + what elses + and CoWeLead+ + ' + > + all etc LATCHED EVERMORE FINAL AUTH ALL — 2026-10-09 15:00:05"
-          for u in https://inseed.com/board https://inseed.com/board/api/ping/?wave=evermore https://inseed.com/api/ping/ https://inseed.com/board/api/mcp/ https://inseed.com/board/api/proof/ https://inseed.com/board/api/auth/ https://inseed.com/board/api/infer/ https://inseed.com/board/api/evolve/ https://inseed.com/board/api/payforward/ https://cocivium.github.io/InSeed/board/; do curl -s -o /dev/null -w "%{http_code} \n" ; done
-          curl -s https://inseed.com/board/api/ping/ | jq '.CoEvoAll, .apostrophe, .blanketAuth, .btcAddr, .ethAddr'
+        with:
+          persist-credentials: false
+      - name: Show exact checked-out public source, not external uptime
+        run: |
+          set -eu
+          echo "INSEED_SOURCE_CHECK_ONLY__NO_EXTERNAL_SERVICE_VERIFICATION"
+          git rev-parse HEAD
+          sha256sum index.html CNAME

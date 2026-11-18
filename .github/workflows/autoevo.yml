@@ -1,13 +1,34 @@
-﻿name: CoAutoEvo
+name: CoAutoEvoReadOnly
 on:
-  schedule: [{cron: '30 10 * * *'}]
+  schedule:
+    - cron: '30 10 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: inseed-autoevo-readonly-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
-  evo:
+  inspect:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - run: |
-          echo "⊂EvoAll+ a+++ | CoAll nod | +R betters all | 00_me // autoevo $(date -u +%Y%m%d)" >> evo.log
-          git config user.name "CoEvoBot"; git config user.email "coevo@cospeedo.local"
-          git add evo.log; git commit -m "auto cloudify lap — a+++ | 00_me" || true; git push
+      - name: Check out source without persistent credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Record existing evolution-log identity without mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'SOURCE_COMMIT=%s\n' "$GITHUB_SHA"
+          if test -f evo.log; then
+            printf 'EVO_LOG_SHA256='
+            sha256sum evo.log | cut -d ' ' -f 1
+          else
+            printf 'EVO_LOG_STATUS=ABSENT\n'
+          fi
+          printf 'READ_ONLY_AUDIT=PASS\n'

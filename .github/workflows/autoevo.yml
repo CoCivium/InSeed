@@ -1,13 +1,23 @@
-﻿name: CoAutoEvo
+name: CoAutoEvo (legacy mutator quarantined)
+# Historical scheduled log writer retained in Git history; no scheduled
+# continuation, publication rights or automatically appended claim records.
 on:
-  schedule: [{cron: '30 10 * * *'}]
   workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
-  evo:
-    runs-on: ubuntu-latest
+  legacy-source-inspection:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          echo "⊂EvoAll+ a+++ | CoAll nod | +R betters all | 00_me // autoevo $(date -u +%Y%m%d)" >> evo.log
-          git config user.name "CoEvoBot"; git config user.email "coevo@cospeedo.local"
-          git add evo.log; git commit -m "auto cloudify lap — a+++ | 00_me" || true; git push
+        with:
+          persist-credentials: false
+      - name: Show source identity without generating artificial progress
+        run: |
+          set -eu
+          echo "HOLD_LEGACY_LOG_AUTOMUTATION__SOURCE_ONLY"
+          git rev-parse HEAD
+          sha256sum index.html

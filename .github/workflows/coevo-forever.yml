@@ -1,18 +1,23 @@
-﻿name: CoEvoForever
+name: CoEvoForever (legacy mutator quarantined)
+# Historical scheduled writer retained in Git history; inactive on this
+# review branch.  Deliberate manual inspection only, without a write token.
 on:
-  schedule: [{cron: '0 * * * *'}]
   workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
-  forever:
-    runs-on: ubuntu-latest
+  legacy-source-inspection:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          stamp=20261013-105628
-          echo "⊂EvoAll+ a+++ | CoAll nod | +R betters all | far far betters etc | Wave 3++++ forever lap \ | 00_me" >> evo.log
-          echo "<!-- Wave 3++++ forever \ -->" >> index.html
-          git config user.name "CoEvoBot"
-          git config user.email "coevo@cospeedo.local"
-          git add evo.log index.html
-          git commit -m "Wave 3++++ forever lap \ — a+++ | 00_me" || true
-          git push
+        with:
+          persist-credentials: false
+      - name: Show immutable source identity and no active publication effect
+        run: |
+          set -eu
+          echo "HOLD_LEGACY_HOMEPAGE_MUTATOR__SOURCE_ONLY"
+          git rev-parse HEAD
+          sha256sum index.html

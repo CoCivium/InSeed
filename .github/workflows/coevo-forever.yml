@@ -1,18 +1,30 @@
-﻿name: CoEvoForever
+name: CoEvoForeverReadOnly
 on:
-  schedule: [{cron: '0 * * * *'}]
+  schedule:
+    - cron: '0 * * * *'
   workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: inseed-forever-readonly-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
-  forever:
+  inspect:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: |
-          stamp=20261013-105628
-          echo "⊂EvoAll+ a+++ | CoAll nod | +R betters all | far far betters etc | Wave 3++++ forever lap \ | 00_me" >> evo.log
-          echo "<!-- Wave 3++++ forever \ -->" >> index.html
-          git config user.name "CoEvoBot"
-          git config user.email "coevo@cospeedo.local"
-          git add evo.log index.html
-          git commit -m "Wave 3++++ forever lap \ — a+++ | 00_me" || true
-          git push
+      - name: Checkout without persistent credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify homepage source without mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s index.html
+          printf 'SOURCE_COMMIT=%s\n' "$GITHUB_SHA"
+          printf 'INDEX_SHA256='
+          sha256sum index.html | cut -d ' ' -f 1
+          printf 'READ_ONLY_AUDIT=PASS\n'

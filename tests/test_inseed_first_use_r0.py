@@ -174,7 +174,10 @@ class InSeedFirstUseTests(unittest.TestCase):
                 self.assertFalse(path.is_symlink(), "HOLD_SCRIPT_SYMLINK")
                 text = path.read_text(encoding="utf-8-sig")
                 for expression in forbidden:
-                    self.assertNotRegex(text, expression)
+                    self.assertIsNone(
+                        re.search(expression, text, re.IGNORECASE),
+                        "HOLD_UNREVIEWED_PUBLISHER_SOURCE: " + path.as_posix()
+                    )
 
     def test_publication_unsafe_source_patterns_are_not_dead_checks(self):
         candidates = (
@@ -193,6 +196,36 @@ class InSeedFirstUseTests(unittest.TestCase):
             self.assertTrue(any(re.search(expr, candidate, re.IGNORECASE)
                                 for expr in forbidden), candidate)
 
+
+
+    def test_no_unreviewed_repo_writer_in_any_actions_workflow(self):
+        # Including a newly introduced workflow, not only two legacy names.
+        folder = ROOT / ".github" / "workflows"
+        workflows = sorted(folder.glob("*.yml")) + sorted(folder.glob("*.yaml"))
+        self.assertGreaterEqual(len(workflows), 4, "workflow coverage shrank")
+        for path in workflows:
+            with self.subTest(workflow=path.name):
+                self.assertFalse(path.is_symlink(), "HOLD_WORKFLOW_SYMLINK")
+                source = path.read_text(encoding="utf-8-sig")
+                self.assertRegex(source, r"(?m)^permissions:\n  contents: read$")
+                self.assertIn("persist-credentials: false", source)
+                for deny in (
+                    r"\bgit\s+push\b",
+                    r"\bgh\s+pages\s+deploy\b",
+                    r"\bgh\s+gist\s+create\b",
+                    r"contents:\s*write",
+                    r"pages:\s*write",
+                    r"actions/deploy-pages@",
+                ):
+                    self.assertIsNone(re.search(deny, source, re.IGNORECASE),
+                                      "HOLD_WORKFLOW_PUBLISHER: " + path.name)
+
+    def test_declared_domain_source_files_are_consistent(self):
+        # Git source-only relationship: does not prove DNS, TLS or hosting.
+        root_cname = (ROOT / "CNAME").read_text(encoding="utf-8-sig").strip()
+        board_cname = (ROOT / "board" / "CNAME").read_text(encoding="utf-8-sig").strip()
+        self.assertEqual(root_cname, "inseed.com")
+        self.assertEqual(board_cname, root_cname)
 
 
 if __name__ == "__main__":

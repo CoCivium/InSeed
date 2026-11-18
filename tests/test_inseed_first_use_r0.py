@@ -228,5 +228,16 @@ class InSeedFirstUseTests(unittest.TestCase):
         self.assertEqual(board_cname, root_cname)
 
 
+    def test_host_privacy_claim_is_not_inferred_from_static_source(self):
+        # Source-only script absence cannot prove a CDN/host adds no tracker.
+        # A bounded public fetch previously observed Cloudflare Insights
+        # augmentation; a later fetch did not. Neither is a release pass.
+        source = HTML.lower()
+        self.assertIn("this page's source includes no contact form or tracking scripts", source)
+        self.assertIn("hosting-level cookies and analytics have not been independently verified", source)
+        self.assertNotIn("this page does not collect form submissions, set cookies or run analytics", source)
+        self.assertNotIn("we do not use analytics", source)
+
+
 if __name__ == "__main__":
     unittest.main()

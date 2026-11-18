@@ -1,1 +1,8 @@
-﻿$f='C:\Users\Owner\Desktop\InSeed\index.html'; $w=New-Object IO.FileSystemWatcher (Split-Path $f), (Split-Path $f -Leaf); $w.EnableRaisingEvents=$true; Register-ObjectEvent $w Changed -Action {cd 'C:\Users\Owner\Desktop\InSeed'; git add index.html CoPingables.json CoVIA.json; git commit -m "auto cloudify $(Get-Date -Format HHmmss) — a+++ | 00_me" -ErrorAction SilentlyContinue; git push origin main -ErrorAction SilentlyContinue; Write-Host "cloudified — a+++"}
+# InSeed public-release review candidate: fail-closed legacy entrypoint.
+# Original source is preserved in Git history; no local or remote
+# machine has been inspected, stopped or modified by this review.
+# Re-enable only under an elected actor, exact source identity,
+# consent/privacy review, rollback and independently verified result.
+# Origin Git blob: a6bf6a013d0677ced9127211e099caa6c7fa08db
+$ErrorActionPreference = 'Stop'
+throw 'HOLD_LEGACY_FILE_WATCHER_PUBLISHER: Legacy filesystem-change-triggered repository publication; source review only'

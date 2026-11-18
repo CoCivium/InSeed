@@ -10,7 +10,7 @@
 ## Changes in candidate
 - Replace opaque ritual/AI-facing copy with a human-first description of possible governance, process and evidence-led work.
 - State the commercial/open-commons boundary from [the existing CoCommons/InSeed policy](https://github.com/CoCivium/CoCivium/blob/main/docs/Governance/COCOMMONS_INSEED_DUAL_LANE_R0_20261115.md).
-- No forms, scripts, hidden instructions, analytics, autoplay, credentials, paid claims or customer claims.
+- The reviewed HTML **source** has no forms, scripts, hidden instructions, analytics code, autoplay, credentials, paid claims or customer claims. Actual hosting additions are not covered by that source-only statement.
 - A single optional mailto using a previously published contact address. **Inbox ownership, delivery and response remain unverified.**
 - Standalone standard-library source regression tests; a passing run is not independent UX acceptance.
 
@@ -57,3 +57,14 @@
 **CoVault:** `KEEP_MASTER | DRAIN=HOLD`. **CoNod:** one source audit + regression + receipt, not another scheduler. **CoOrb:** present `DRAFT_SOURCE_GUARD` distinctly from `LIVE_EXTERNAL_VERIFIED`.
 
 `SOURCE_TREE_COVERAGE_286_BLOBS | KNOWN_REVIEW_BRANCH_WRITERS_QUARANTINED | EXTERNAL_WRITERS_UNKNOWN | SOURCE_GUARD_NE_LIVE_DISABLE | MAIN_UNCHANGED | RELEASE_HOLD`
+
+
+## Serving-layer augmentation and privacy-truth gate (2026-11-18)
+
+**Source is not served HTML.** [The prior X2 public front-door observation](https://github.com/CoCivium/CoSteward/issues/60#issuecomment-6968486180) reported https://inseed.com/ serving a 2,053-byte HTML response with a Cloudflare Insights beacon fragment appended to the matching 1,648-character mainline prefix. That dated readback reported served SHA-256 **840db7d974c975ae95b0b775bdb1cd9cd0b51d30ce1c36c40b2c115d21371bd3**. In a later bounded X2 read-only curl fetch during the 2026-11-18 CoPre9.1+ review, the old opaque InSeed source HTML was returned **without the beacon in the displayed response**. Neither isolated sample proves the current site's tracking settings across visitors, versions, geography or time. No conclusion about who enabled the script or whether analytics data was transmitted.
+
+**Release gate:** Never infer that a deployed page uses no analytics, cookies, tracking or third-party resources solely because this repository's static HTML contains none. Before any authorized publication, the real host/CDN owner must inspect the serving configuration, privacy basis and disclosures. After any approved, exact-SHA staging/release, capture fresh apex and www HTTPS URLs, response headers, exact served-body digest, network/resource/cookie behavior and desktop/mobile screenshots, independently confirm content/source binding and obtain rights/consent/owner acceptance. If the host may inject tracking and that behavior is unreviewed, **HOLD_PRIVACY_CLAIM_AND_RELEASE**, not an unconditional privacy assurance.
+
+The visible draft homepage now says only that its **source** contains no contact form or tracking scripts and that hosting-level cookies and analytics remain unverified. Its new source regression check rejects the prior unqualified served-page privacy claim. Both changes are **source-only**, not live deployment, analytics disablement, a published privacy policy or independent receiver acknowledgment.
+
+**CoGuardian:** HOST_AUGMENTATION_UNBOUND | PRIVACY_CLAIM_CORRECTED_IN_REVIEW_SOURCE | PUBLIC_RELEASE_HOLD. **CoVault:** KEEP_MASTER, no drain. **CoNod:** one source correction and regression gate, not a second publishing pipeline.

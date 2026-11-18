@@ -4,6 +4,8 @@ on:
     paths:
       - "index.html"
       - "tests/test_inseed_first_use_r0.py"
+      - ".github/workflows/coevo-forever.yml"
+      - ".github/workflows/autoevo.yml"
       - ".github/workflows/inseed-first-use-r0.yml"
   workflow_dispatch:
 

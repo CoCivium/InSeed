@@ -1,0 +1,48 @@
+{
+  "schema": "CoSitesPublicDeliveryReadproofR0",
+  "work_id": "CoSites261119:InSeed:PublicDeliveryReadproof:R0",
+  "observation_date_utc": "2026-11-19",
+  "scope": "public-facing homepage and immutable source/candidate recovery",
+  "site": "https://inseed.com/",
+  "external_observation": {
+    "provider": "public HTTP text fetch",
+    "result": "public site returned original page showing I AM IN button, Wave 1 LIVE language",
+    "source_url": "https://inseed.com/",
+    "screenshot": "NOT_CAPTURED",
+    "interactive_user_task_test": "NOT_RUN",
+    "curl_from_X2": "NOT_RUN_X2_OFFLINE"
+  },
+  "repository": "CoCivium/InSeed",
+  "main_commit": "1d0964637c68b49ef4274c5e48d034e148f1897a",
+  "main_index_blob": "b87017e0223f40ee816cd0871404d17fb7e33d26",
+  "candidate_branch": "integration/cosites261118-inseed-human-first-r0-212119z",
+  "candidate_commit_before_receipt": "cdb2cd584c23bd566662aa42f93f13ebf78c9bbd",
+  "candidate_index_blob": "ed5dd73cde75515c76e66e29bea1c764d6759362",
+  "candidate_hourly_workflow_blob": "4cfa73bd405d398ce6c670986f3455788e9053f3",
+  "candidate_daily_workflow_blob": "691c11651b732212bd7af9653385e6ec1d185e57",
+  "outcome": "CANDIDATE_INTACT_BUT_PUBLIC_SITE_UNCHANGED",
+  "authority": "Evidence file on isolated nonproduction integration branch only; no merge, deploy, DNS or public release authority",
+  "did": [
+    "Re-read current main and integration branch heads and homepage blobs via GitHub",
+    "Verified two existing open PRs remain separate",
+    "Read public InSeed homepage independently; original content still displayed",
+    "Detected X2 remote offline and preserved no false CoFarm receipt"
+  ],
+  "not": [
+    "No production change, PR, merge, DNS, deploy or workflow execution",
+    "No screenshot, interactive browser task, CoGuardian acceptance or three-reviewer signoff",
+    "No X2 local receipt, elected master ledger acceptance, Vault landing, receiver ACK or CoEx"
+  ],
+  "hold": [
+    "Public launch and merging behind CoGuardian and independent testing",
+    "X2 custody and master intake unverified"
+  ],
+  "next_single_action": "Review and authorize release candidate against current main with independent browser proof URL+log+shot+test; no publication until gate is satisfied",
+  "rollback": "This evidence file is additive on isolated integration branch; may be reverted or branch abandoned when authorized",
+  "nonclaims": [
+    "LOCAL_IS_NOT_LANDED",
+    "VALIDATION_IS_NOT_ACCEPTANCE",
+    "NO_RECEIVER_PICKUP_WITHOUT_EXACT_READPROOF",
+    "NO_INTEGRATION_COEX_CANON_RUNTIME_OR_PUBLIC_INFERENCE"
+  ]
+}

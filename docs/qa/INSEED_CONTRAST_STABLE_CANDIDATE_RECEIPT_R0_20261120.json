@@ -1,0 +1,95 @@
+{
+  "schema": "InSeed.CoSites.FirstUseContrastRemediation.CandidateReceipt.R0",
+  "work_id": "InSeed:SourceFirstUse:HeroContrastStability:20261120:R0",
+  "state": "CANDIDATE_SOURCE_CONTRAST_REMediation_TESTED_NOT_HOSTED",
+  "authority": "ISOLATED_SOURCE_BRANCH_ONLY_NO_MERGE_NO_DOMAIN_CHANGE",
+  "source": {
+    "branch": "candidate/inseed-contrast-stable-r0-20261120",
+    "base_commit": "049d69bfb41e7556456fd0771eb6793dac62dfde",
+    "original_index_blob": "0effb59c4a4e830f2ce5297998df496786d49f32",
+    "revised_index_blob": "94df1e4233ff9093d5044d723ae833b4885d8c7a",
+    "revised_commit": "0791b83f0c7a4e85acd5453dbb59065f4bcba266",
+    "test_source": "tests/inseed_contrast_canary_r0.cjs",
+    "test_source_blob": "7bac6a8a6eb58e846bc17b0253a03dd4896b1812",
+    "workflow": ".github/workflows/inseed-contrast-source-canary-r0.yml",
+    "workflow_blob": "e8968cf98706ba9d5ca429c9eec8de1ddbd49d41",
+    "change_scope": [
+      "Removed decorative gradient behind reading hero text, retained non-text signal motif",
+      "Added opaque background and padding to signal caption"
+    ],
+    "baseline": {
+      "ci_run": 44648858124,
+      "source_index_blob": "0effb59c4a4e830f2ce5297998df496786d49f32",
+      "color_contrast_incomplete_nodes_per_viewport": 9,
+      "violation_count_per_viewport": 0,
+      "diagnostic_scope": "Public CSS class/tag hints only, no node text or raw selectors"
+    }
+  },
+  "verification": {
+    "provider": "GitHub Actions",
+    "read_scope": "isolated source branch not current hosted InSeed.com",
+    "run_id": 44649277353,
+    "run_url": "https://github.com/CoCivium/InSeed/actions/runs/44649277353",
+    "run_commit": "f33017a7922126c23df06f39e460b9cc25b2fcfe",
+    "conclusion": "success",
+    "source_regressions": 16,
+    "source_regressions_result": "PASS",
+    "viewports": [
+      {
+        "width": 390,
+        "height": 844,
+        "violation_count": 0,
+        "incomplete_contrast_nodes": 0,
+        "other_incomplete_rules": [],
+        "horizontal_overflow_px": 0,
+        "blocked_http_requests": 0,
+        "js_page_errors": 0,
+        "screenshot_sha256": "4c667633cc7b40d57343b2c543c897e764b8654f04d35e3e51404ccab1ff71f5"
+      },
+      {
+        "width": 1365,
+        "height": 900,
+        "violation_count": 0,
+        "incomplete_contrast_nodes": 0,
+        "other_incomplete_rules": [],
+        "horizontal_overflow_px": 0,
+        "blocked_http_requests": 0,
+        "js_page_errors": 0,
+        "screenshot_sha256": "d15c671f630f950faa18821d6bf12600cdaa49d6ea830e75ac22790619dc086c"
+      }
+    ],
+    "visual_check": "Two screenshots visually inspected in review environment; separate human and assistive-technology acceptance still unproven",
+    "artifact_id": 14588854821,
+    "artifact_zip_sha256": "013b58a9e4f7a5033d9ee5af82a3e1b203576fce74b88d607a64bedb686d844b",
+    "artifact_contains": [
+      "receipt.json",
+      "mobile390.png",
+      "desktop1365.png"
+    ],
+    "artifact_expiration": "2026-12-04T00:52:39Z",
+    "independent_assessor_roots": 1
+  },
+  "deferred": [
+    "Original InSeed PR1 remains unchanged",
+    "No source promotion to main",
+    "No live site or DNS update",
+    "No human-first accessibility acceptance",
+    "No mailbox/service delivery or commercial authority claim",
+    "CoPolitic candidate retains one inconclusive contrast element and requires separate review",
+    "CoCivium live technical index still requires private security review"
+  ],
+  "next_safe_job": "Review the candidate under existing InSeed source owner, qualify independent human keyboard/screen-reader first use, compare original and revised design visually, then elect source and test hosted preview behind explicit privacy and release gates.",
+  "nonclaims": [
+    "SOURCE_PASS_NE_HOSTED_DEPLOYMENT",
+    "SAME_PROVIDER_CI_NE_THREE_INDEPENDENT_ROOTS",
+    "NO_HUMAN_ACCEPTANCE",
+    "NO_GOVERNING_PROMOTION",
+    "NO_X2_RUNTIME_OR_RECEIVER_ACK",
+    "NO_COEX",
+    "NO_PHANTOM_ACK",
+    "LOCAL_IS_NOT_LANDED",
+    "VALIDATION_IS_NOT_ACCEPTANCE",
+    "NO_RECEIVER_PICKUP_WITHOUT_EXACT_READPROOF",
+    "NO_INTEGRATION_COEX_CANON_RUNTIME_OR_PUBLIC_INFERENCE"
+  ]
+}

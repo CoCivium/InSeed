@@ -1,7 +1,7 @@
 {
   "schema": "InSeed.CoSites.FirstUseContrastRemediation.CandidateReceipt.R0",
   "work_id": "InSeed:SourceFirstUse:HeroContrastStability:20261120:R0",
-  "state": "CANDIDATE_SOURCE_CONTRAST_REMediation_TESTED_NOT_HOSTED",
+  "state": "CANDIDATE_SOURCE_CONTRAST_REMEDIATION_TESTED_NOT_HOSTED",
   "authority": "ISOLATED_SOURCE_BRANCH_ONLY_NO_MERGE_NO_DOMAIN_CHANGE",
   "source": {
     "branch": "candidate/inseed-contrast-stable-r0-20261120",

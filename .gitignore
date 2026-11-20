@@ -2,3 +2,4 @@ WALLET_DO_NOT_SHARE.txt
 WALLET*
 *.key
 *.priv
+__pycache__/

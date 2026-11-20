@@ -8,6 +8,13 @@ on:
       - "**/*.ps1"
       - "CNAME"
       - "board/CNAME"
+      - "board/**"
+      - "api/**"
+      - "scripts/**"
+      - "*.html"
+      - "*.json"
+      - "payment-destinations.verified.json"
+      - "tests/test_inseed_no_unverified_payment_r0.py"
   workflow_dispatch:
 
 permissions:
@@ -26,3 +33,6 @@ jobs:
           python-version: '3.12'
       - name: Verify source-only semantics and no hidden directives
         run: python -B -m unittest discover -s tests -p 'test_inseed_first_use_r0.py' -v
+      - name: Fail closed on unverified payment destinations, personal webmail and credential literals
+        if: ${{ always() }}
+        run: python -B -m unittest discover -s tests -p 'test_inseed_no_unverified_payment_r0.py' -v

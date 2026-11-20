@@ -1,13 +1,15 @@
 # CoNotifyReal.ps1 — sends REAL gmail — not static JSON
-param($To="darren@gmail.com",$Amount="10,000,000",$Pool="100M @ 600k/day")
-$From = "your gmail — put real here: e.g. cocivium@gmail.com"
-$AppPassword = "put Gmail App Password here — 16 chars — from myaccount.google.com/apppasswords"
+param($To=$env:INSEED_NOTIFY_TO,$Amount="10,000,000",$Pool="100M @ 600k/day",$Name="",[switch]$Send)
+$From = $env:INSEED_NOTIFY_FROM
+$AppPassword = $env:INSEED_SMTP_APP_PASSWORD
+# W09-C3: identities and secret come only from the environment; nothing is sent without -Send.
+if (-not $Send -or -not $To -or -not $From -or -not $AppPassword) { Write-Error "HOLD: set INSEED_NOTIFY_TO, INSEED_NOTIFY_FROM, INSEED_SMTP_APP_PASSWORD and pass -Send"; exit 2 }
 
 # Board proof links — real 200
 $Board = "https://inseed.com/board"
 $Ping = "https://inseed.com/board/api/ping/?wave=evermore"
 $Body = @"
-Darren — real notify — not fantasy —
+$Name — real notify — not fantasy —
 
 Pool: $Pool — claim $Amount allocation — CoEvoAll+ a + +++ + what elses + and CoWeLead+ + ' + > + all etc LATCHED
 Board 200 OK: $Board — 5/5 200 verified — 87ms 88ms 86ms 132ms 220ms

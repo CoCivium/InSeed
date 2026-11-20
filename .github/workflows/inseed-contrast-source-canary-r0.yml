@@ -1,0 +1,51 @@
+name: InSeed candidate contrast review R0
+# Separate candidate branch; no domain deployment or cloud command authority.
+on:
+  push:
+    paths:
+      - "index.html"
+      - "tests/inseed_contrast_canary_r0.cjs"
+      - ".github/workflows/inseed-contrast-source-canary-r0.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  isolated-source-and-contrast:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout candidate without stored credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Qualify existing first-use privacy and source tests
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Reuse incumbent InSeed source checks
+        run: python -B -m unittest discover -s tests -p 'test_inseed_first_use_r0.py' -v
+
+      - name: Install pinned headless browser and a11y engine
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Bounded browser contrast canary
+        run: |
+          set -euo pipefail
+          npm install --no-save --package-lock=false --ignore-scripts --no-audit --no-fund playwright-core@1.56.0 axe-core@4.10.3
+          node --check tests/inseed_contrast_canary_r0.cjs
+          node tests/inseed_contrast_canary_r0.cjs
+
+      - name: Retain exact reviewer evidence even on HOLD
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: inseed-contrast-r0-${{ github.run_id }}-a${{ github.run_attempt }}
+          path: out/inseed-contrast-proof-r0/
+          if-no-files-found: warn
+          retention-days: 14

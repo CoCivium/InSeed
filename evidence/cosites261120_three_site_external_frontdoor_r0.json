@@ -1,0 +1,70 @@
+{
+  "schema": "CoSitesThreeSiteExternalFrontdoorR0",
+  "work_id": "CoSites261120:three-site-frontdoor:20261120",
+  "observed_date_utc": "2026-11-20",
+  "scope": "read-only external HTTP text-fetch comparison of three priority public domains",
+  "results": [
+    {
+      "site": "https://inseed.com/",
+      "external_fetch": "HTTP page content visible",
+      "headline": "We are now alive to all share — ⊂EvoAll+",
+      "observed_user_action": "I AM IN button",
+      "observed_status_claim": "Wave 1 LIVE",
+      "assessment": "LEGACY_PAGE_HUMAN_ACCEPTANCE_FAIL",
+      "evidence_ref": "turn513232view0"
+    },
+    {
+      "site": "https://cocivium.org/",
+      "external_fetch": "404 Not Found",
+      "assessment": "EXTERNAL_FETCH_FAIL_NOT_GLOBAL_OUTAGE_PROOF",
+      "evidence_ref": "turn513232view1"
+    },
+    {
+      "site": "https://copolitic.org/",
+      "external_fetch": "404 Not Found",
+      "assessment": "EXTERNAL_FETCH_FAIL_NOT_GLOBAL_OUTAGE_PROOF",
+      "evidence_ref": "turn513232view2"
+    }
+  ],
+  "related_pages_probe": {
+    "site": "https://cocivium.github.io/CoPolitic-site/",
+    "result": "NOT_ACCESSIBLE_VIA_WEB_FETCH_TOOL",
+    "note": "Not proof of site outage"
+  },
+  "github": {
+    "integration_branch": "integration/cosites261118-inseed-human-first-r0-212119z",
+    "head_before_receipt": "65272717312173f5392b89b9ae7eee622aa066c3",
+    "production_main_head": "1d0964637c68b49ef4274c5e48d034e148f1897a"
+  },
+  "runtime": {
+    "x2_remote": "OFFLINE_LAST_SEEN_47H",
+    "cofarm_custody": "NOT_AVAILABLE",
+    "elected_vault_receiver": "UNVERIFIED"
+  },
+  "required_public_proof": {
+    "urls": true,
+    "logs": false,
+    "screenshots": false,
+    "interactive_tests": false,
+    "three_independent_reviewers": false
+  },
+  "did": [
+    "Checked the public three-site entrypoints through external web fetch",
+    "Verified X2 connection state and GitHub candidate/production heads",
+    "Recorded observed external fetch outcomes without global outage claims"
+  ],
+  "not": [
+    "No merge, deployment, DNS edit, production or workflow changes",
+    "No screenshot, real visitor journey acceptance or 3-ind reviewer signoff",
+    "No CoFarm landing, Vault master admission, receiver ACK, runtime or CoEx"
+  ],
+  "next_one_action": "Independent external browser session captures desktop/mobile screenshots, HTTP logs and one meaningful visitor task for InSeed integrated candidate; CoGuardian holds production release until reviewed",
+  "status": "PUBLIC_FRONTDOOR_ACCEPTANCE_HOLD",
+  "rollback": "Additive JSON evidence only on existing isolated integration branch",
+  "nonclaims": [
+    "LOCAL_IS_NOT_LANDED",
+    "VALIDATION_IS_NOT_ACCEPTANCE",
+    "NO_RECEIVER_PICKUP_WITHOUT_EXACT_READPROOF",
+    "NO_INTEGRATION_COEX_CANON_RUNTIME_OR_PUBLIC_INFERENCE"
+  ]
+}

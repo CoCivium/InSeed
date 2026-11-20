@@ -1,0 +1,64 @@
+{
+  "schema": "CoSitesInSeedPublicAcceptanceGapR0",
+  "work_id": "CoSites261120:InSeed:public-acceptance-gap:R0",
+  "observation_date_utc": "2026-11-20",
+  "site": "https://inseed.com/",
+  "repository": "CoCivium/InSeed",
+  "integration_branch": "integration/cosites261118-inseed-human-first-r0-212119z",
+  "integration_head_before_receipt": "683915897836053f73137cb48885a9820f394aea",
+  "production_main_head": "1d0964637c68b49ef4274c5e48d034e148f1897a",
+  "integration_homepage_blob": "ed5dd73cde75515c76e66e29bea1c764d6759362",
+  "production_homepage_blob": "b87017e0223f40ee816cd0871404d17fb7e33d26",
+  "public_observation": {
+    "source": "Public web text fetch of https://inseed.com/ on 2026-11-20",
+    "observed_title": "We are now alive to all share — ⊂EvoAll+",
+    "observed_button": "I AM IN",
+    "observed_phrase": "Wave 1 LIVE",
+    "public_matches_legacy_content": true,
+    "public_matches_integration_candidate": false,
+    "external_browser_screenshot": "NOT_CAPTURED",
+    "interactive_task": "NOT_RUN"
+  },
+  "candidate_source_checks": {
+    "no_fake_signup": true,
+    "prelaunch_disclosure": true,
+    "internal_section_links_observed": true,
+    "external_start_here_file_exists": true,
+    "external_governance_file_exists": true,
+    "link_destinations_rendered_in_browser": "NOT_TESTED",
+    "mobile_accessibility_ux": "NOT_TESTED",
+    "candidate_live_deployment": "NOT_VERIFIED"
+  },
+  "recovery": {
+    "x2_remote": "OFFLINE_LAST_SEEN_46H",
+    "cofarm_receipt": "NOT_WRITTEN",
+    "github_custody": "ISOLATED_CANDIDATE_BRANCH",
+    "master_intake": "NOT_VERIFIED"
+  },
+  "authority": "User standing bounded candidate/evidence permission; no public release, production merge or DNS authority exercised",
+  "did": [
+    "Rechecked integration and production heads",
+    "Refetched candidate homepage",
+    "Publicly refetched InSeed.com and observed legacy content",
+    "Checked existence of two key candidate outbound GitHub target files",
+    "Prepared one bounded evidence receipt"
+  ],
+  "not": [
+    "No GitHub production mutation, merge, PR or deployment",
+    "No screenshot, independent visitor task completion or 3 reviewer acceptance",
+    "No X2 or CoFarm local receipt, CoVault landing, receiver pickup, CoEx or master ACK"
+  ],
+  "hold": [
+    "Publication and production merge require CoGuardian review",
+    "Human-facing acceptance remains unproven"
+  ],
+  "next_single_deed": "Authorized reviewer inspects exact integration candidate and performs non-production browser/mobile task test with URL+log+screenshot+test before any release decision",
+  "rollback": "Additive evidence file on isolated existing integration branch only; no production rollback needed",
+  "status": "GITHUB_SOURCE_INTACT_PUBLIC_VISITOR_NOT_UPDATED",
+  "nonclaims": [
+    "LOCAL_IS_NOT_LANDED",
+    "VALIDATION_IS_NOT_ACCEPTANCE",
+    "NO_RECEIVER_PICKUP_WITHOUT_EXACT_READPROOF",
+    "NO_INTEGRATION_COEX_CANON_RUNTIME_OR_PUBLIC_INFERENCE"
+  ]
+}

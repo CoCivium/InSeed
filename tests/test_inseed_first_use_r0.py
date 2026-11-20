@@ -220,6 +220,52 @@ class InSeedFirstUseTests(unittest.TestCase):
                     self.assertIsNone(re.search(deny, source, re.IGNORECASE),
                                       "HOLD_WORKFLOW_PUBLISHER: " + path.name)
 
+    @staticmethod
+    def _unverified_service_probe_markers(source):
+        # Scope: repository-controlled Actions YAML in this review candidate.
+        # These workflows qualify checked-out bytes, NOT live services.
+        # A real external uptime/health observer needs its own owner and
+        # evidence-bearing workflow, not a magic phrase in source CI.
+        return [
+            name for name, pattern in (
+                ("UNSCOPED_NETWORK_COMMAND",
+                 r"(?i)\b(?:curl|wget|Invoke-WebRequest|Invoke-RestMethod)\b"),
+                ("INSEED_BOARD_OR_API_PROBE",
+                 r"(?i)https?://(?:www\.)?inseed\.com/(?:board|api)(?:/|\b)"),
+                ("FALSE_AUTH_OR_PAYMENT_ASSERTION",
+                 r"(?i)\b(?:blanketAuth|btcAddr|ethAddr)\b"),
+                ("UNPROVEN_FINAL_AUTH_CLAIM",
+                 r"(?i)\bFINAL\s+AUTH\s+ALL\s+EVERMORE\b"),
+            ) if re.search(pattern, source)
+        ]
+
+    def test_source_only_actions_have_no_unverified_live_service_probes(self):
+        folder = ROOT / ".github" / "workflows"
+        workflows = sorted(folder.glob("*.yml")) + sorted(folder.glob("*.yaml"))
+        self.assertGreaterEqual(len(workflows), 4, "HOLD_WORKFLOW_SET_SHRANK")
+        for path in workflows:
+            with self.subTest(workflow=path.name):
+                source = path.read_text(encoding="utf-8-sig")
+                self.assertEqual(
+                    self._unverified_service_probe_markers(source), [],
+                    "HOLD_CI_UNVERIFIED_REMOTE_AUTH_SERVICE: " + path.name
+                )
+
+    def test_unverified_service_probe_guard_rejects_legacy_counterexamples(self):
+        # Synthetic controls: no network calls or real account tokens.
+        probes = {
+            "remote_ping": "run: curl -s https://inseed.com/board/api/ping/",
+            "network_command": "run: wget https://example.invalid/mock",
+            "fabricated_auth": "run: jq '.blanketAuth, .btcAddr, .ethAddr'",
+            "promotional_title": "name: CoAll CI+ FINAL AUTH ALL EVERMORE",
+        }
+        for label, source in probes.items():
+            with self.subTest(negative=label):
+                self.assertTrue(self._unverified_service_probe_markers(source),
+                                "HOLD_DEAD_NEGATIVE_GUARD: " + label)
+        benign = "name: InSeed source identity only\npermissions:\n  contents: read\n"
+        self.assertEqual(self._unverified_service_probe_markers(benign), [])
+
     def test_declared_domain_source_files_are_consistent(self):
         # Git source-only relationship: does not prove DNS, TLS or hosting.
         root_cname = (ROOT / "CNAME").read_text(encoding="utf-8-sig").strip()

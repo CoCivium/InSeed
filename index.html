@@ -25,7 +25,7 @@
     .site-header nav a { text-decoration:none; color:var(--quiet); }
     .site-header nav a:hover { color:var(--mint); }
     .hero { position:relative; isolation:isolate; padding:clamp(55px,9vw,110px) 0 clamp(45px,6vw,75px); overflow:hidden; }
-    .hero:before { content:""; position:absolute; inset:0; z-index:-1; opacity:.55; background:radial-gradient(circle at 75% 35%,#24786a 0,transparent 34%),radial-gradient(circle at 90% 90%,#203958 0,transparent 38%); }
+    .hero:before { content:none; } /* Keep the text-bearing hero on a measurable solid background; decorative gradients remain inside the non-text signal motif. */
     .hero-grid { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr); gap:42px; align-items:center; }
     .eyebrow { color:var(--mint); font-size:.79rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
     h1 { font-size:clamp(2.6rem,6vw,5.4rem); letter-spacing:-.055em; line-height:1.06; margin:15px 0 22px; max-width:850px; }
@@ -46,7 +46,7 @@
     .signal-center { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:48px; height:70px; }
     .signal-center:before { content:""; position:absolute; left:21px; top:34px; width:5px; height:40px; border-radius:5px; background:var(--mint); transform:rotate(-13deg); }
     .signal-center:after { content:""; position:absolute; width:49px; height:35px; top:5px; left:1px; border-radius:65% 0 75% 10%; background:linear-gradient(120deg,#e8ffbd,#59b9a7); transform:rotate(-24deg); }
-    .signal-note { position:absolute; bottom:17px; left:19px; right:19px; color:#d8ece8; font-size:.8rem; letter-spacing:.06em; text-transform:uppercase; text-align:center; }
+    .signal-note { position:absolute; bottom:17px; left:19px; right:19px; color:#d8ece8; background:#11252c; border:1px solid #6eada1; border-radius:9px; padding:8px; font-size:.8rem; letter-spacing:.06em; text-transform:uppercase; text-align:center; }
     .note { margin:27px 0 0; padding:14px 17px; background:#173137; border-left:4px solid var(--amber); border-radius:6px; color:#e2ebef; max-width:780px; font-size:.92rem; }
     section { padding:63px 0; border-top:1px solid #27414a; }
     .section-intro { max-width:720px; color:var(--quiet); }

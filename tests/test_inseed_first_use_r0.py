@@ -99,10 +99,13 @@ class InSeedFirstUseTests(unittest.TestCase):
             if href.startswith("mailto:"):
                 self.assertEqual(urlsplit(href).path, "contact@inseed.com")
                 continue
+            if href == "https://cocivium.org/":
+                continue  # One explicit cross-front research link, not a general host allowlist.
             u = urlsplit(href)
             self.assertEqual(u.scheme, "https")
             self.assertEqual(u.netloc, "github.com")
             self.assertTrue(u.path.startswith("/CoCivium/"))
+        self.assertEqual(p.links.count("https://cocivium.org/"), 1)
         self.assertEqual(len([x for x in p.links if x.startswith("mailto:")]), 1)
 
     def test_evidence_and_commercial_separation_disclosed(self):

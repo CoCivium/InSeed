@@ -99,8 +99,16 @@ class InSeedFirstUseTests(unittest.TestCase):
             if href.startswith("mailto:"):
                 self.assertEqual(urlsplit(href).path, "contact@inseed.com")
                 continue
-            if href == "https://cocivium.org/":
-                continue  # One explicit cross-front research link, not a general host allowlist.
+            # Explicit, source-reviewed public destinations only.
+            # Hosting/endorsement and live service still require separate proof.
+            allowed_public = {
+                "https://cocivium.org/",
+                "https://cocivium.github.io/CoPolitic-site/press.html",
+                "https://www.linkedin.com/in/richardballard/",
+                "https://rickpublic.substack.com/",
+            }
+            if href in allowed_public:
+                continue
             u = urlsplit(href)
             self.assertEqual(u.scheme, "https")
             self.assertEqual(u.netloc, "github.com")
@@ -282,8 +290,9 @@ class InSeedFirstUseTests(unittest.TestCase):
         # A bounded public fetch previously observed Cloudflare Insights
         # augmentation; a later fetch did not. Neither is a release pass.
         source = HTML.lower()
-        self.assertIn("this page's source includes no contact form or tracking scripts", source)
-        self.assertIn("hosting-level cookies and analytics have not been independently verified", source)
+        self.assertIn("this page has no source-authored contact form or tracking code", source)
+        self.assertIn("hosting-supplied cloudflare web analytics beacon request", source)
+        self.assertIn("cookie, collection and retention behaviour has not been independently audited", source)
         self.assertNotIn("this page does not collect form submissions, set cookies or run analytics", source)
         self.assertNotIn("we do not use analytics", source)
 
